@@ -2,22 +2,22 @@
 
 {% if no_users_exist or no_admins_exist %}
 <div class="row">
-<div class="col-md-offset-2 col-md-8">
-  {% if no_users_exist %}
-  <p class="text-danger">There are no users on this system! To make an administrative user,
-  log into this machine using SSH (like when you first set it up) and run:</p>
-  <pre>cd mailinabox
-sudo tools/mail.py user add me@{{hostname}}
-sudo tools/mail.py user make-admin me@{{hostname}}</pre>
-  {% else %}
-  <p class="text-danger">There are no administrative users on this system! To make an administrative user,
-  log into this machine using SSH (like when you first set it up) and run:</p>
-  <pre>cd mailinabox
-sudo tools/mail.py user make-admin me@{{hostname}}</pre>
-  {% endif %}
-  <hr>
+  <div class="col-md-offset-2 col-md-8">
+    {% if no_users_exist %}
+    <p class="text-danger">There are no users on this system! To make an administrative user,
+    log into this machine using SSH (like when you first set it up) and run:</p>
+    <pre>cd mailinabox
+  sudo tools/mail.py user add me@{{hostname}}
+  sudo tools/mail.py user make-admin me@{{hostname}}</pre>
+    {% else %}
+    <p class="text-danger">There are no administrative users on this system! To make an administrative user,
+    log into this machine using SSH (like when you first set it up) and run:</p>
+    <pre>cd mailinabox
+  sudo tools/mail.py user make-admin me@{{hostname}}</pre>
+    {% endif %}
+    <hr>
+  </div>
 </div>
-</div>  
 {% endif %}
 
 <p style="margin: 2em; text-align: center;">Log in here for your Mail-in-a-Box control panel.</p>
@@ -58,7 +58,7 @@ sudo tools/mail.py user make-admin me@{{hostname}}</pre>
 function do_login() {
   if ($('#loginEmail').val() == "") {
     show_modal_error("Login Failed", "Enter your email address.", function() {
-	$('#loginEmail').focus();
+  $('#loginEmail').focus();
     });
     return false;
   }
@@ -76,7 +76,7 @@ function do_login() {
   "/me",
   "GET",
   { },
-  function(response){ 
+  function(response){
     // This API call always succeeds. It returns a JSON object indicating
     // whether the request was authenticated or not.
     if (response.status != "ok") {

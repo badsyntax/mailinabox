@@ -97,39 +97,39 @@ if [ ! -f $STORAGE_ROOT/owncloud/owncloud.db ]; then
 	cat > $STORAGE_ROOT/owncloud/config.php <<EOF;
 <?php
 \$CONFIG = array (
-  'datadirectory' => '$STORAGE_ROOT/owncloud',
+	'datadirectory' => '$STORAGE_ROOT/owncloud',
 
-  'instanceid' => '$instanceid',
+	'instanceid' => '$instanceid',
 
-  'trusted_domains' =>
-    array (
-      0 => '$PRIMARY_HOSTNAME',
-    ),
-  'forcessl' => true, # if unset/false, ownCloud sends a HSTS=0 header, which conflicts with nginx config
+	'trusted_domains' =>
+		array (
+			0 => '$PRIMARY_HOSTNAME',
+		),
+	'forcessl' => true, # if unset/false, ownCloud sends a HSTS=0 header, which conflicts with nginx config
 
-  'overwritewebroot' => '/cloud',
-  'overwrite.cli.url' => '/cloud',
-  'user_backends' => array(
-    array(
-      'class'=>'OC_User_IMAP',
-      'arguments'=>array('{localhost:993/imap/ssl/novalidate-cert}')
-    )
-  ),
-  'memcache.local' => '\\OC\\Memcache\\Memcached',
-  "memcached_servers" => array (
-    array('localhost', 11211),
-  ),
-  'mail_smtpmode' => 'sendmail',
-  'mail_smtpsecure' => '',
-  'mail_smtpauthtype' => 'LOGIN',
-  'mail_smtpauth' => false,
-  'mail_smtphost' => '',
-  'mail_smtpport' => '',
-  'mail_smtpname' => '',
-  'mail_smtppassword' => '',
-  'mail_from_address' => 'owncloud',
-  'mail_domain' => '$PRIMARY_HOSTNAME',
-  'logtimezone' => '$TIMEZONE',
+	'overwritewebroot' => '/cloud',
+	'overwrite.cli.url' => '/cloud',
+	'user_backends' => array(
+		array(
+			'class'=>'OC_User_IMAP',
+			'arguments'=>array('{localhost:993/imap/ssl/novalidate-cert}')
+		)
+	),
+	'memcache.local' => '\\OC\\Memcache\\Memcached',
+	"memcached_servers" => array (
+		array('localhost', 11211),
+	),
+	'mail_smtpmode' => 'sendmail',
+	'mail_smtpsecure' => '',
+	'mail_smtpauthtype' => 'LOGIN',
+	'mail_smtpauth' => false,
+	'mail_smtphost' => '',
+	'mail_smtpport' => '',
+	'mail_smtpname' => '',
+	'mail_smtppassword' => '',
+	'mail_from_address' => 'owncloud',
+	'mail_domain' => '$PRIMARY_HOSTNAME',
+	'logtimezone' => '$TIMEZONE',
 );
 ?>
 EOF
@@ -141,14 +141,14 @@ EOF
 	cat > /usr/local/lib/owncloud/config/autoconfig.php <<EOF;
 <?php
 \$AUTOCONFIG = array (
-  # storage/database
-  'directory' => '$STORAGE_ROOT/owncloud',
-  'dbtype' => 'sqlite3',
+	# storage/database
+	'directory' => '$STORAGE_ROOT/owncloud',
+	'dbtype' => 'sqlite3',
 
-  # create an administrator account with a random password so that
-  # the user does not have to enter anything on first load of ownCloud
-  'adminlogin'    => 'root',
-  'adminpass'     => '$adminpassword',
+	# create an administrator account with a random password so that
+	# the user does not have to enter anything on first load of ownCloud
+	'adminlogin'    => 'root',
+	'adminpass'     => '$adminpassword',
 );
 ?>
 EOF

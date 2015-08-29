@@ -34,12 +34,12 @@ sed -i "s/#\(\!include auth-sql.conf.ext\)/\1/"  /etc/dovecot/conf.d/10-auth.con
 # and where user mailboxes are stored (userdb).
 cat > /etc/dovecot/conf.d/auth-sql.conf.ext << EOF;
 passdb {
-  driver = sql
-  args = /etc/dovecot/dovecot-sql.conf.ext
+	driver = sql
+	args = /etc/dovecot/dovecot-sql.conf.ext
 }
 userdb {
-  driver = static
-  args = uid=mail gid=mail home=$STORAGE_ROOT/mail/mailboxes/%d/%n
+	driver = static
+	args = uid=mail gid=mail home=$STORAGE_ROOT/mail/mailboxes/%d/%n
 }
 EOF
 
@@ -55,11 +55,11 @@ chmod 0600 /etc/dovecot/dovecot-sql.conf.ext # per Dovecot instructions
 # Have Dovecot provide an authorization service that Postfix can access & use.
 cat > /etc/dovecot/conf.d/99-local-auth.conf << EOF;
 service auth {
-  unix_listener /var/spool/postfix/private/auth {
-    mode = 0666
-    user = postfix
-    group = postfix
-  }
+	unix_listener /var/spool/postfix/private/auth {
+		mode = 0666
+		user = postfix
+		group = postfix
+	}
 }
 EOF
 

@@ -82,7 +82,7 @@ class KeyAuthService:
 	def get_user_credentials(self, email, pw, env):
 		# Validate a user's credentials. On success returns a list of
 		# privileges (e.g. [] or ['admin']). On failure raises a ValueError
-		# with a login error message. 
+		# with a login error message.
 
 		# Sanity check.
 		if email == "" or pw == "":

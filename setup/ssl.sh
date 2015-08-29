@@ -34,14 +34,14 @@ fi
 if [ ! -f $STORAGE_ROOT/ssl/ssl_cert_sign_req.csr ]; then
 	hide_output \
 	openssl req -new -key $STORAGE_ROOT/ssl/ssl_private_key.pem -out $STORAGE_ROOT/ssl/ssl_cert_sign_req.csr \
-	  -sha256 -subj "/C=$CSR_COUNTRY/ST=/L=/O=/CN=$PRIMARY_HOSTNAME"
+		-sha256 -subj "/C=$CSR_COUNTRY/ST=/L=/O=/CN=$PRIMARY_HOSTNAME"
 fi
 
 # Generate a SSL certificate by self-signing.
 if [ ! -f $STORAGE_ROOT/ssl/ssl_certificate.pem ]; then
 	hide_output \
 	openssl x509 -req -days 365 \
-	  -in $STORAGE_ROOT/ssl/ssl_cert_sign_req.csr -signkey $STORAGE_ROOT/ssl/ssl_private_key.pem -out $STORAGE_ROOT/ssl/ssl_certificate.pem
+		-in $STORAGE_ROOT/ssl/ssl_cert_sign_req.csr -signkey $STORAGE_ROOT/ssl/ssl_private_key.pem -out $STORAGE_ROOT/ssl/ssl_certificate.pem
 fi
 
 # For nginx and postfix, pre-generate some Diffie-Hellman cipher bits which is

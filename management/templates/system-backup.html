@@ -113,7 +113,7 @@ function nice_size(bytes) {
 
 function show_system_backup() {
   show_custom_backup()
-  
+
   $('#backup-status tbody').html("<tr><td colspan='2' class='text-muted'>Loading...</td></tr>")
   api(
     "/system/backup/status",
@@ -154,37 +154,37 @@ function show_system_backup() {
 }
 
 function show_custom_backup() {
-    $(".backup-target-local, .backup-target-s3").hide();
-    api(
-      "/system/backup/config",
-      "GET",
-      { },
-      function(r) {
-        if (r.target == "file://" + r.file_target_directory) {
-          $("#backup-target-type").val("local");
-        } else if (r.target == "off") {
-          $("#backup-target-type").val("off");
-        } else if (r.target.substring(0, 5) == "s3://") {
-          $("#backup-target-type").val("s3");
-	  var hostpath = r.target.substring(5).split('/');
-          var host = hostpath.shift();
-          $("#backup-target-s3-host").val(host);
-          $("#backup-target-s3-path").val(hostpath.join('/'));
-        }
-        $("#backup-target-user").val(r.target_user);
-        $("#backup-target-pass").val(r.target_pass);
-        $("#min-age").val(r.min_age_in_days);
-        $('#backup-location').text(r.file_target_directory);
-        $('.backup-encpassword-file').text(r.enc_pw_file);
-        toggle_form()
-      })
+  $(".backup-target-local, .backup-target-s3").hide();
+  api(
+    "/system/backup/config",
+    "GET",
+    { },
+    function(r) {
+      if (r.target == "file://" + r.file_target_directory) {
+        $("#backup-target-type").val("local");
+      } else if (r.target == "off") {
+        $("#backup-target-type").val("off");
+      } else if (r.target.substring(0, 5) == "s3://") {
+        $("#backup-target-type").val("s3");
+        var hostpath = r.target.substring(5).split('/');
+        var host = hostpath.shift();
+        $("#backup-target-s3-host").val(host);
+        $("#backup-target-s3-path").val(hostpath.join('/'));
+      }
+      $("#backup-target-user").val(r.target_user);
+      $("#backup-target-pass").val(r.target_pass);
+      $("#min-age").val(r.min_age_in_days);
+      $('#backup-location').text(r.file_target_directory);
+      $('.backup-encpassword-file').text(r.enc_pw_file);
+      toggle_form()
+    })
 }
 
 function set_custom_backup() {
   var target_type = $("#backup-target-type").val();
   var target_user = $("#backup-target-user").val();
   var target_pass = $("#backup-target-pass").val();
-  
+
   var target;
   if (target_type == "local" || target_type == "off")
     target = target_type;

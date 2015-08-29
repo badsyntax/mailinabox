@@ -39,7 +39,7 @@ tools/editconf.py /etc/php5/fpm/php.ini -c ';' \
 
 # Set PHPs default charset to UTF-8, since we use it. See #367.
 tools/editconf.py /etc/php5/fpm/php.ini -c ';' \
-        default_charset="UTF-8"
+				default_charset="UTF-8"
 
 # Bump up PHP's max_children to support more concurrent connections
 tools/editconf.py /etc/php5/fpm/pool.d/www.conf -c ';' \

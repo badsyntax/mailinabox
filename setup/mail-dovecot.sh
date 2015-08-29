@@ -90,20 +90,20 @@ tools/editconf.py /etc/dovecot/conf.d/20-imap.conf \
 	imap_idle_notify_interval="4 mins"
 
 # Set POP3 UIDL
-# UIDLs are used by POP3 clients to keep track of what messages they've downloaded. 
+# UIDLs are used by POP3 clients to keep track of what messages they've downloaded.
 # For new POP3 servers, the easiest way to set up UIDLs is to use IMAP's UIDVALIDITY
 # and UID values, the default in Dovecot.
 tools/editconf.py /etc/dovecot/conf.d/20-pop3.conf \
 	pop3_uidl_format="%08Xu%08Xv"
 
-# Full Text Search - Enable full text search of mail using dovecot's lucene plugin, 
+# Full Text Search - Enable full text search of mail using dovecot's lucene plugin,
 # which *we* package and distribute (dovecot-lucene package).
 tools/editconf.py /etc/dovecot/conf.d/10-mail.conf \
 	mail_plugins="\$mail_plugins fts fts_lucene"
 cat > /etc/dovecot/conf.d/90-plugin-fts.conf << EOF;
 plugin {
-  fts = lucene
-  fts_lucene = whitespace_chars=@.
+	fts = lucene
+	fts_lucene = whitespace_chars=@.
 }
 EOF
 
@@ -120,18 +120,18 @@ EOF
 # we all have so many devices lately.
 cat > /etc/dovecot/conf.d/99-local.conf << EOF;
 service lmtp {
-  #unix_listener /var/spool/postfix/private/dovecot-lmtp {
-  #  user = postfix
-  #  group = postfix
-  #}
-  inet_listener lmtp {
-    address = 127.0.0.1
-    port = 10026
-  }
+	#unix_listener /var/spool/postfix/private/dovecot-lmtp {
+	#  user = postfix
+	#  group = postfix
+	#}
+	inet_listener lmtp {
+		address = 127.0.0.1
+		port = 10026
+	}
 }
 
 protocol imap {
-  mail_max_userip_connections = 20
+	mail_max_userip_connections = 20
 }
 EOF
 
@@ -165,11 +165,11 @@ sed -i "s/#mail_plugins = .*/mail_plugins = \$mail_plugins sieve/" /etc/dovecot/
 # is also where the ManageSieve service stores the user's scripts.
 cat > /etc/dovecot/conf.d/99-local-sieve.conf << EOF;
 plugin {
-  sieve_before = /etc/dovecot/sieve-spam.sieve
-  sieve_before2 = $STORAGE_ROOT/mail/sieve/global_before
-  sieve_after = $STORAGE_ROOT/mail/sieve/global_after
-  sieve = $STORAGE_ROOT/mail/sieve/%d/%n.sieve
-  sieve_dir = $STORAGE_ROOT/mail/sieve/%d/%n
+	sieve_before = /etc/dovecot/sieve-spam.sieve
+	sieve_before2 = $STORAGE_ROOT/mail/sieve/global_before
+	sieve_after = $STORAGE_ROOT/mail/sieve/global_after
+	sieve = $STORAGE_ROOT/mail/sieve/%d/%n.sieve
+	sieve_dir = $STORAGE_ROOT/mail/sieve/%d/%n
 }
 EOF
 

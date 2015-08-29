@@ -14,8 +14,8 @@ source setup/preflight.sh
 # the management daemon startup script.
 
 if [ -z `locale -a | grep en_US.utf8` ]; then
-    # Generate locale if not exists
-    hide_output locale-gen en_US.UTF-8
+		# Generate locale if not exists
+		hide_output locale-gen en_US.UTF-8
 fi
 
 export LANGUAGE=en_US.UTF-8
@@ -140,7 +140,7 @@ else
 	echo
 fi
 openssl x509 -in $STORAGE_ROOT/ssl/ssl_certificate.pem -noout -fingerprint \
-        | sed "s/SHA1 Fingerprint=//"
+				| sed "s/SHA1 Fingerprint=//"
 echo
 echo Then you can confirm the security exception and continue.
 echo

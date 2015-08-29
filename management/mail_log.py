@@ -55,7 +55,7 @@ def scan_mail_log_line(line, collector):
 
 	date, system, service, pid, log = m.groups()
 	date = dateutil.parser.parse(date)
-	
+
 	if service == "dovecot":
 		scan_dovecot_line(date, log, collector)
 

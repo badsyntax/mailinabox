@@ -25,19 +25,19 @@ mkdir -p /var/run/nsd
 cat > /etc/nsd/nsd.conf << EOF;
 # No not edit. Overwritten by Mail-in-a-Box setup.
 server:
-  hide-version: yes
+	hide-version: yes
 
-  # identify the server (CH TXT ID.SERVER entry).
-  identity: ""
+	# identify the server (CH TXT ID.SERVER entry).
+	identity: ""
 
-  # The directory for zonefile: files.
-  zonesdir: "/etc/nsd/zones"
+	# The directory for zonefile: files.
+	zonesdir: "/etc/nsd/zones"
 
-  # Allows NSD to bind to IP addresses that are not (yet) added to the
-  # network interface. This allows nsd to start even if the network stack
-  # isn't fully ready, which apparently happens in some cases.
-  # See https://www.nlnetlabs.nl/projects/nsd/nsd.conf.5.html.
-  ip-transparent: yes
+	# Allows NSD to bind to IP addresses that are not (yet) added to the
+	# network interface. This allows nsd to start even if the network stack
+	# isn't fully ready, which apparently happens in some cases.
+	# See https://www.nlnetlabs.nl/projects/nsd/nsd.conf.5.html.
+	ip-transparent: yes
 
 EOF
 

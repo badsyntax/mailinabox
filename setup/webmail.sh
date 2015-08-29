@@ -109,18 +109,18 @@ cat > /usr/local/lib/roundcubemail/plugins/vacation_sieve/config.inc.php <<EOF;
 <?php
 /* Do not edit. Written by Mail-in-a-Box. Regenerated on updates. */
 \$rcmail_config['vacation_sieve'] = array(
-    'date_format' => 'd/m/Y',
-    'working_hours' => array(8,18),
-    'msg_format' => 'text',
-    'logon_transform' => array('#([a-z])[a-z]+(\.|\s)([a-z])#i', '\$1\$3'),
-    'transfer' => array(
-        'mode' =>  'managesieve',
-        'ms_activate_script' => true,
-        'host'   => 'localhost',
-        'port'   => '4190',
-        'usetls' => false,
-        'path' => 'vacation',
-    )
+		'date_format' => 'd/m/Y',
+		'working_hours' => array(8,18),
+		'msg_format' => 'text',
+		'logon_transform' => array('#([a-z])[a-z]+(\.|\s)([a-z])#i', '\$1\$3'),
+		'transfer' => array(
+				'mode' =>  'managesieve',
+				'ms_activate_script' => true,
+				'host'   => 'localhost',
+				'port'   => '4190',
+				'usetls' => false,
+				'path' => 'vacation',
+		)
 );
 EOF
 
@@ -129,7 +129,7 @@ mkdir -p /var/log/roundcubemail /tmp/roundcubemail $STORAGE_ROOT/mail/roundcube
 chown -R www-data.www-data /var/log/roundcubemail /tmp/roundcubemail $STORAGE_ROOT/mail/roundcube
 
 # Password changing plugin settings
-# The config comes empty by default, so we need the settings 
+# The config comes empty by default, so we need the settings
 # we're not planning to change in config.inc.dist...
 cp /usr/local/lib/roundcubemail/plugins/password/config.inc.php.dist \
 	/usr/local/lib/roundcubemail/plugins/password/config.inc.php
@@ -149,8 +149,8 @@ usermod -a -G dovecot www-data
 # could use dovecot instead of www-data, but not sure it matters
 chown root.www-data $STORAGE_ROOT/mail
 chmod 775 $STORAGE_ROOT/mail
-chown root.www-data $STORAGE_ROOT/mail/users.sqlite 
-chmod 664 $STORAGE_ROOT/mail/users.sqlite 
+chown root.www-data $STORAGE_ROOT/mail/users.sqlite
+chmod 664 $STORAGE_ROOT/mail/users.sqlite
 
 # Enable PHP modules.
 php5enmod mcrypt
